@@ -10,8 +10,8 @@ from langchain_core.prompts import (
   FewShotChatMessagePromptTemplate
 )
 import os
-from store import get_session_history
-from llm import llm
+from agents.history import get_session_history
+from agents.llm import llm
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables.history import RunnableWithMessageHistory
