@@ -9,7 +9,6 @@ from langchain_core.prompts import (
   AIMessagePromptTemplate,
   FewShotChatMessagePromptTemplate
 )
-import os
 from agents.history import get_session_history
 from agents.llm import llm
 from dotenv import load_dotenv
@@ -164,18 +163,12 @@ chain = RunnableWithMessageHistory(
   history_messages_key="history"
 )
 
-while True:
-  user_input = input("Você: ")
-  if user_input.lower() in ('sair', 'end', 'fim', 'tchau', 'bye'):
-    print("")
-    break
+def start_dialog(user_input:str, session_id:int) -> str:
   try:
-
     response = chain.invoke(
       {"user": user_input},
-      config={"configurable": {"session_id":"my_session_id"}}
+      config={"configurable": {"session_id":session_id}}
     )
-    print(response)
+    return response
   except Exception as e:
-    print("Error consuming API: ", e)
-    
+    return "Erro ao consumir API: \n"+e
