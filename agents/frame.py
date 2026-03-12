@@ -163,7 +163,7 @@ chain = RunnableWithMessageHistory(
   history_messages_key="history"
 )
 
-def start_dialog(user_input:str, session_id:int) -> str:
+def start_dialog(user_input:str, session_id:str) -> str:
   try:
     response = chain.invoke(
       {"user": user_input},
